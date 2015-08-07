@@ -6,3 +6,8 @@ http://pythonhosted.org/setuptools/
 
 Setting up nose tests
 http://www.scotttorborg.com/python-packaging/testing.html
+
+
+Lessons learned
+- The test modules need to be named after the module being tested.
+For instance, the test for crawler.py needs to be named crawler_test.py
