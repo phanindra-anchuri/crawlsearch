@@ -1,3 +1,4 @@
+Setup
 distutils vs setuptools
 http://stackoverflow.com/questions/25337706/setuptools-vs-distutils-why-is-distutils-still-a-thing
 
@@ -11,3 +12,7 @@ http://www.scotttorborg.com/python-packaging/testing.html
 Lessons learned
 - The test modules need to be named after the module being tested.
 For instance, the test for crawler.py needs to be named crawler_test.py
+
+Reading material
+http://www.quora.com/How-can-I-build-a-web-crawler-from-scratch
+http://blog.marc-seeger.de/assets/papers/thesis_seeger-building_blocks_of_a_scalable_webcrawler.pdf
