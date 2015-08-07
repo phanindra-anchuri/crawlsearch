@@ -1,0 +1,8 @@
+distutils vs setuptools
+http://stackoverflow.com/questions/25337706/setuptools-vs-distutils-why-is-distutils-still-a-thing
+
+setuptools documentation
+http://pythonhosted.org/setuptools/
+
+Setting up nose tests
+http://www.scotttorborg.com/python-packaging/testing.html
