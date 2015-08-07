@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 import urllib2
 
 
-class Hello:
+class Crawler:
 
     @staticmethod
-    def say_hello():
+    def crawl():
         url = 'http://www.google.com'
         page = urllib2.urlopen(url)
         soup = BeautifulSoup(page.read())
