@@ -17,4 +17,14 @@ Reading material
 http://www.quora.com/How-can-I-build-a-web-crawler-from-scratch
 http://blog.marc-seeger.de/assets/papers/thesis_seeger-building_blocks_of_a_scalable_webcrawler.pdf
 
-TBD
+Git
+Merging a pull request manually
+Step 1: From your project repository, check out a new branch and test the changes.
+
+git checkout -b cloverchio-master master
+git pull https://github.com/cloverchio/crawlsearch.git master
+Step 2: Merge the changes and update on GitHub.
+
+git checkout master
+git merge --no-ff cloverchio-master
+git push origin master
