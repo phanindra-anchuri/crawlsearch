@@ -16,3 +16,5 @@ For instance, the test for crawler.py needs to be named crawler_test.py
 Reading material
 http://www.quora.com/How-can-I-build-a-web-crawler-from-scratch
 http://blog.marc-seeger.de/assets/papers/thesis_seeger-building_blocks_of_a_scalable_webcrawler.pdf
+
+TBD
