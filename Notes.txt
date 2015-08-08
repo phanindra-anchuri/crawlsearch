@@ -10,8 +10,15 @@ http://www.scotttorborg.com/python-packaging/testing.html
 
 
 Lessons learned
-- The test modules need to be named after the module being tested.
+
+Python
+
+The test modules need to be named after the module being tested.
 For instance, the test for crawler.py needs to be named crawler_test.py
+
+from __future__ imports must occur at the beginning of the file
+
+http://google-styleguide.googlecode.com/svn/trunk/pyguide.html
 
 Reading material
 http://www.quora.com/How-can-I-build-a-web-crawler-from-scratch
