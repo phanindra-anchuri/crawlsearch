@@ -23,6 +23,7 @@ http://google-styleguide.googlecode.com/svn/trunk/pyguide.html
 Reading material
 http://www.quora.com/How-can-I-build-a-web-crawler-from-scratch
 http://blog.marc-seeger.de/assets/papers/thesis_seeger-building_blocks_of_a_scalable_webcrawler.pdf
+http://it-ebooks.info/book/3361/
 
 Git
 Merging a pull request manually
