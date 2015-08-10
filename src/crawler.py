@@ -17,9 +17,9 @@ class Crawler:
         # print(type(links[0]))
         return links
 
-    def __init__(self):
-        self.base_url = sys.argv[1]
+    def __init__(self, url):
+        self.base_url = url
 
 if __name__ == '__main__':
-    crawler = Crawler()
+    crawler = Crawler(sys.argv[1])
     crawler.extract_links()
