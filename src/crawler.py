@@ -1,4 +1,5 @@
 # from __future__ import print_function
+import sys
 import urllib2
 from urlparse import urlparse
 
@@ -6,6 +7,7 @@ from bs4 import BeautifulSoup
 
 
 class Crawler:
+
     def extract_links(self):
         page = urllib2.urlopen(self.base_url)
         soup = BeautifulSoup(page.read(), 'html.parser')
@@ -15,13 +17,9 @@ class Crawler:
         # print(type(links[0]))
         return links
 
-    def __init__(self):
-        pass
-
-    def __init__(self, base_url):
-        self.base_url = base_url
-
+    def __init__(self, url):
+        self.base_url = url
 
 if __name__ == '__main__':
-    crawler = Crawler('http://www.overstock.com')
-    crawler.crawl()
+    crawler = Crawler(sys.argv[1])
+    crawler.extract_links()
