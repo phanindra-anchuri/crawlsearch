@@ -31,6 +31,8 @@ https://github.com/internetarchive/heritrix3
 
 -Python
 http://it-ebooks.info/book/3361/
+https://docs.python.org/2/library/abc.html
+https://julien.danjou.info/blog/2013/guide-python-static-class-abstract-methods
 
 Git
 Merging a pull request manually
