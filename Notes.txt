@@ -24,6 +24,8 @@ Reading material
 http://www.quora.com/How-can-I-build-a-web-crawler-from-scratch
 http://blog.marc-seeger.de/assets/papers/thesis_seeger-building_blocks_of_a_scalable_webcrawler.pdf
 http://it-ebooks.info/book/3361/
+https://docs.python.org/2/library/abc.html
+https://julien.danjou.info/blog/2013/guide-python-static-class-abstract-methods
 
 Git
 Merging a pull request manually
