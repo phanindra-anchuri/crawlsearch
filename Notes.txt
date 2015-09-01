@@ -23,6 +23,7 @@ http://google-styleguide.googlecode.com/svn/trunk/pyguide.html
 Reading material
 
 -Crawlers
+http://blog.mischel.com/2011/12/13/writing-a-web-crawler-introduction/
 http://www.quora.com/How-can-I-build-a-web-crawler-from-scratch
 http://blog.marc-seeger.de/assets/papers/thesis_seeger-building_blocks_of_a_scalable_webcrawler.pdf
 http://nlp.stanford.edu/IR-book/html/htmledition/web-crawling-and-indexes-1.html
