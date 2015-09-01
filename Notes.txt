@@ -29,6 +29,7 @@ http://blog.marc-seeger.de/assets/papers/thesis_seeger-building_blocks_of_a_scal
 http://nlp.stanford.edu/IR-book/html/htmledition/web-crawling-and-indexes-1.html
 http://infolab.stanford.edu/~olston/publications/crawling_survey.pdf
 https://github.com/internetarchive/heritrix3
+https://en.wikipedia.org/wiki/URL_normalization
 
 -Python
 http://it-ebooks.info/book/3361/
