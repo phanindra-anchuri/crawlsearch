@@ -1,14 +1,18 @@
-# from __future__ import print_function
 import sys
 import urllib2
 from urllib2 import HTTPError, URLError
 from collections import deque
 from reppy.cache import RobotsCache
-
+from src.normalization import Normalization
+from src.persistence import Persister
 from bs4 import BeautifulSoup
 
 
 class Crawler:
+
+    def __init__(self, url, depth):
+        self.base_url = url
+        self.depth = depth
 
     @staticmethod
     def extract_links(url):
@@ -19,7 +23,6 @@ class Crawler:
         atags = soup.find_all('a')
         links = [str(atag.get('href')) for atag in atags]
         allowed_links = [str(link) for link in links if x.allowed(link, 'crawler')]
-        # print '\n'.join(str(link) for link in allowed_links)
         return allowed_links
 
     def crawl_links(self):
@@ -28,19 +31,19 @@ class Crawler:
         queue.appendleft(self.base_url)
         while len(queue) > 0 and depth <= self.depth:
             url = queue.popleft()
-            try:
-                urls = [str(link) for link in self.extract_links(url)]
-                if urls.count(url) > 1:
-                    urls.remove(url)
-            except (ValueError, HTTPError, URLError):
-                continue
-            depth += 1
-            for url in urls:
-                queue.append(str(url))
-
-    def __init__(self, url, depth):
-        self.base_url = url
-        self.depth = depth
+            results = Persister().get_urls()
+            if results.count(url) < 1:
+                normalize = Normalization(url)
+                Persister().save_url(normalize.get_url())
+                try:
+                    urls = [str(link) for link in self.extract_links(url)]
+                    if urls.count(url) > 1:
+                        urls.remove(url)
+                except (ValueError, HTTPError, URLError):
+                    continue
+                depth += 1
+                for url in urls:
+                    queue.append(str(url))
 
 if __name__ == '__main__':
     crawler = Crawler(sys.argv[1], int(sys.argv[2]))

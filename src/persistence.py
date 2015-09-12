@@ -1,18 +1,40 @@
-__author__ = 'phanindra'
-
 import sqlite3
 
 
 class Persister:
+
     def __init__(self):
         pass
 
-    def save_url(self, url):
+    @staticmethod
+    def connection():
         conn = sqlite3.connect('crawl.db')
         conn.execute('''CREATE TABLE if not exists crawl_results
-             (date text, url text)''')
-        insert = "INSERT INTO crawl_results VALUES ('2006-01-05', '"
-        insert += url + "')"
-        conn.execute(insert)
-        conn.commit()
-        conn.close()
+                 (date text, url text)''')
+        return conn
+
+    def save_url(self, url):
+        conn = self.connection()
+        try:
+            insert = "INSERT INTO crawl_results VALUES ('2006-01-05', '"
+            insert += url + "')"
+            conn.execute(insert)
+        except sqlite3.Error as e:
+            print e.message
+            if conn is not None:
+                conn.rollback()
+        finally:
+            conn.commit()
+            conn.close()
+
+    def get_urls(self):
+        conn = self.connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT url FROM crawl_results")
+        results = [cursor.fetchall()]
+        return results
+
+
+
+
+

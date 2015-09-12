@@ -1,8 +1,7 @@
-from __future__ import print_function
-from urllib2 import URLError
 import unittest
-
+from urllib2 import URLError
 from src.crawler import Crawler
+from src.persistence import Persister
 
 
 class CrawlerTest(unittest.TestCase):
@@ -22,6 +21,19 @@ class CrawlerTest(unittest.TestCase):
         h = Crawler(url, 1)
         self.assertIsNone(h.crawl_links())
         self.assertRaises(URLError, h.crawl_links())
+
+    def crawled_links_test(self):
+        url = 'http://www.google.com'
+        duplicate_url = 'http://www.google.com/intl/en/options/'
+        Crawler(url, 5).crawl_links()
+        self.assertTrue(Persister().get_urls().count(duplicate_url) <= 1)
+        self.assertFalse(Persister().get_urls().count(duplicate_url) > 1)
+
+    def tearDown(self):
+        conn = Persister().connection()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM crawl_results")
+        conn.close()
 
 if __name__ == '__main__':
     unittest.main()
