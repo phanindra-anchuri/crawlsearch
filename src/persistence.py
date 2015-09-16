@@ -21,6 +21,7 @@ class Persister:
             conn.execute(insert)
         except sqlite3.Error as e:
             print e.message
+
             if conn is not None:
                 conn.rollback()
         finally:
@@ -30,9 +31,13 @@ class Persister:
     def get_urls(self):
         conn = self.connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT url FROM crawl_results")
-        results = [cursor.fetchall()]
-        return results
+        try:
+            cursor.execute("SELECT url FROM crawl_results")
+            results = [cursor.fetchall()]
+            return results
+
+        finally:
+            conn.close()
 
 
 
