@@ -38,8 +38,3 @@ class Persister:
 
         finally:
             conn.close()
-
-
-
-
-

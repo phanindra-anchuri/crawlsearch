@@ -52,19 +52,3 @@ class Normalization:
             return new_url
         else:
             return url.geturl()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

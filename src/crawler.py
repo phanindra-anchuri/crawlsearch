@@ -48,4 +48,3 @@ class Crawler:
 if __name__ == '__main__':
     crawler = Crawler(sys.argv[1], int(sys.argv[2]))
     crawler.crawl_links()
-
