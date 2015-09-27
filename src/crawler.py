@@ -29,21 +29,23 @@ class Crawler:
         depth = 0
         queue = deque()
         queue.appendleft(self.base_url)
+        visited_links = []
         while len(queue) > 0 and depth <= self.depth:
             url = queue.popleft()
-            results = Persister().get_urls()
-            if results.count(url) < 1:
-                normalize = Normalization(url)
-                Persister().save_url(normalize.get_url())
-                try:
-                    urls = [str(link) for link in self.extract_links(url)]
-                    if urls.count(url) > 1:
-                        urls.remove(url)
-                except (ValueError, HTTPError, URLError):
-                    continue
-                depth += 1
-                for url in urls:
-                    queue.append(str(url))
+            print url
+            new_url = Normalization(url).validate()
+            visited_links.append(new_url)
+            normalized_url = Normalization.get_url(new_url, visited_links)
+            Persister().save_url(normalized_url)
+            try:
+                urls = [str(link) for link in self.extract_links(url)]
+                if urls.count(url) > 1:
+                    urls.remove(url)
+            except (ValueError, HTTPError, URLError):
+                continue
+            depth += 1
+            for url in urls:
+                queue.append(str(url))
 
 if __name__ == '__main__':
     crawler = Crawler(sys.argv[1], int(sys.argv[2]))

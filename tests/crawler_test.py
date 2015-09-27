@@ -1,33 +1,25 @@
 import unittest
-from urllib2 import URLError
 from src.crawler import Crawler
 from src.persistence import Persister
 
 
 class CrawlerTest(unittest.TestCase):
 
+    def setUp(self):
+        self.test_url = 'http://www.google.com'
+        self.invalid_url = 'invalid_url:'
+        self.robot_path = 'path/catalogs'
+        self.robot_url = 'http://www.google.com/catalogs'
+
     def extract_test(self):
-        url = 'http://www.google.com'
-        h = Crawler(url, 1)
-        self.assertTrue(len(h.extract_links(url)) > 0)
+        crawler = Crawler(self.test_url, 1)
+        extracted_urls = crawler.extract_links(self.test_url)
+        self.assertTrue(len(extracted_urls) > 0)
 
     def robots_test(self):
-        url = 'http://www.google.com'
-        h = Crawler(url, 1)
-        self.assertTrue('path/catalogs' and 'http://www.google.com/catalogs' not in h.extract_links(url))
-
-    def crawl_test(self):
-        url = 'invalidurl:'
-        h = Crawler(url, 1)
-        self.assertIsNone(h.crawl_links())
-        self.assertRaises(URLError, h.crawl_links())
-
-    def crawled_links_test(self):
-        url = 'http://www.google.com'
-        duplicate_url = 'http://www.google.com/intl/en/options/'
-        Crawler(url, 5).crawl_links()
-        self.assertTrue(Persister().get_urls().count(duplicate_url) <= 1)
-        self.assertFalse(Persister().get_urls().count(duplicate_url) > 1)
+        crawler = Crawler(self.test_url, 1)
+        self.assertTrue(self.robot_path and self.robot_url
+                        not in crawler.extract_links(self.test_url))
 
     def tearDown(self):
         conn = Persister().connection()

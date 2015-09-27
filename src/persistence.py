@@ -16,7 +16,7 @@ class Persister:
     def save_url(self, url):
         conn = self.connection()
         try:
-            insert = "INSERT INTO crawl_results VALUES ('2006-01-05', '"
+            insert = "INSERT INTO crawl_results VALUES (CURRENT_TIMESTAMP, '"
             insert += url + "')"
             conn.execute(insert)
         except sqlite3.Error as e:
