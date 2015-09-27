@@ -32,7 +32,6 @@ class Crawler:
         visited_links = []
         while len(queue) > 0 and depth <= self.depth:
             url = queue.popleft()
-            print url
             new_url = Normalization(url).validate()
             visited_links.append(new_url)
             normalized_url = Normalization.get_url(new_url, visited_links)

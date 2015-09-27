@@ -1,7 +1,3 @@
-# TODO https://plus.google.comhttp:/// - fix the appended http://
-# TODO https://support.google.comhttp///intl/en/insidesearch/
-# TODO //investor.google.com/
-
 import re
 from collections import deque
 from urlparse import urlparse

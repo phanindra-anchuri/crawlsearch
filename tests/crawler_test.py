@@ -1,6 +1,5 @@
 import unittest
 from src.crawler import Crawler
-from src.persistence import Persister
 
 
 class CrawlerTest(unittest.TestCase):
@@ -20,12 +19,6 @@ class CrawlerTest(unittest.TestCase):
         crawler = Crawler(self.test_url, 1)
         self.assertTrue(self.robot_path and self.robot_url
                         not in crawler.extract_links(self.test_url))
-
-    def tearDown(self):
-        conn = Persister().connection()
-        cursor = conn.cursor()
-        cursor.execute("DELETE FROM crawl_results")
-        conn.close()
 
 if __name__ == '__main__':
     unittest.main()
