@@ -1,26 +1,25 @@
 import unittest
 from src.persistence import Persister
-from src.crawler import Crawler
 
 
 class PersisterTest(unittest.TestCase):
 
+    def setUp(self):
+        self.persister = Persister()
+        self.url = 'http://www.url.com'
+
     def persistence_test(self):
-        persister = Persister()
-        persister.save_url('www.google.com')
-        self.assertTrue(True)
+        self.assertEqual(self.persister.save_url(self.url), None)
 
     def get_urls_test(self):
-        url = 'www.facebook.com'
-        Crawler(url, 1).crawl_links()
-        results = Persister().get_urls()
-        self.assertTrue(len(results) >= 1)
+        self.persister.save_url(self.url)
+        self.persister.save_url(self.url)
+        self.assertTrue(self.persister.get_urls() > 1)
 
     def tearDown(self):
-        conn = Persister().connection()
-        cursor = conn.cursor()
-        cursor.execute("DELETE FROM crawl_results")
-        conn.close()
+        conn = self.persister.connection()
+        conn.execute("DELETE FROM crawl_results")
+        conn.commit()
 
 if __name__ == '__main__':
     unittest.main()
